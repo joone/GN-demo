@@ -2,4 +2,8 @@ executable("hello") {
   sources = [
     "main.cpp",
   ]
+
+  configs = [
+    "//build/gnome:gtk",
+  ]
 }

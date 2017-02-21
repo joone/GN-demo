@@ -1,42 +1,14 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <memory>
-using namespace std;
+#include <gtk/gtk.h>
 
-int main()
+int main (int argc, char *argv[])
 {
-    // two shared pointers representing two persons by their name
-    shared_ptr<string> pNico(new string("nico"));
-    shared_ptr<string> pJutta(new string("jutta"));
+  GtkWidget *window;
 
-    // capitalize person names
-    (*pNico)[0] = 'N';
-    pJutta->replace(0,1,"J");
+  gtk_init (&argc, &argv);
+  window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_widget_show (window);
 
-    // put them multiple times in a container
-    vector<shared_ptr<string>> whoMadeCoffee;
-    whoMadeCoffee.push_back(pJutta);
-    whoMadeCoffee.push_back(pJutta);
-    whoMadeCoffee.push_back(pNico);
-    whoMadeCoffee.push_back(pJutta);
-    whoMadeCoffee.push_back(pNico);
+  gtk_main ();
 
-    // print all elements
-    for (auto ptr : whoMadeCoffee) {
-        cout << *ptr << "  ";
-    }
-    cout << endl;
-
-    // overwrite a name again
-    *pNico = "Nicolai";
-
-    // print all elements again
-    for (auto ptr : whoMadeCoffee) {
-        cout << *ptr << "  ";
-    }
-    cout << endl;
-
-    // print some internal data
-    cout << "use_count: " << whoMadeCoffee[0].use_count() << endl;
+  return 0;
 }
